@@ -56,6 +56,7 @@ Room Pulse Now brings:
 ## 🔗 Deployment
 
 **Live Demo:** https://roompulse-six.vercel.app/
+
 **GitHub Repo:** https://github.com/hargun144/RoomPulse 
 
 ---
