@@ -1,9 +1,9 @@
-# 🏫 Room Pulse — Real-Time Classroom Availability System
+# Room Pulse — Real-Time Classroom Availability System
 
 Room Pulse Now is a browser-based web application that solves the everyday problem of finding vacant classrooms on campus.  
 It enables Students, CRs, and Faculty to view, update, and verify real-time room occupancy — eliminating confusion, manual coordination, and scheduling conflicts.
 
-## 💡 Why Room Pulse Now?
+## Why Room Pulse Now?
 On most campuses:
 - Classroom updates happen manually  
 - No central system shows which rooms are free  
@@ -55,7 +55,7 @@ Room Pulse Now brings:
 
 ## 🔗 Deployment
 
-**Live Demo:** https://room-pulse-now.vercel.app/  
+**Live Demo:** https://roompulse-six.vercel.app/
 **GitHub Repo:** https://github.com/Harilynn/room-pulse-now  
 
 ---
