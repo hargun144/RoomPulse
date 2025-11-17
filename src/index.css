@@ -1,0 +1,216 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 220 15% 20%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 20%;
+
+    --primary: 7 86% 67%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 181 74% 57%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 10% 50%;
+
+    --accent: 44 98% 70%;
+    --accent-foreground: 220 15% 20%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 14% 90%;
+    --input: 220 14% 90%;
+    --ring: 7 86% 67%;
+
+    --radius: 1rem;
+    
+    /* Gradient colors */
+    --gradient-start: 7 86% 67%;
+    --gradient-mid: 181 74% 57%;
+    --gradient-end: 44 98% 70%;
+    
+    /* Status colors */
+    --status-vacant: 142 76% 36%;
+    --status-occupied: 0 84% 60%;
+    --status-reserved: 44 98% 70%;
+    
+    /* Glassmorphism */
+    --glass-bg: 0 0% 100% / 0.7;
+    --glass-border: 0 0% 100% / 0.2;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 15% 10%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 15% 15%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 220 15% 15%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 7 86% 67%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 181 74% 57%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 220 15% 20%;
+    --muted-foreground: 220 10% 65%;
+
+    --accent: 44 98% 70%;
+    --accent-foreground: 220 15% 10%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 25%;
+    --input: 220 15% 25%;
+    --ring: 7 86% 67%;
+    
+    --glass-bg: 220 15% 15% / 0.7;
+    --glass-border: 0 0% 100% / 0.1;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: linear-gradient(135deg, hsl(var(--gradient-start)) 0%, hsl(var(--gradient-mid)) 50%, hsl(var(--gradient-end)) 100%);
+    background-size: 200% 200%;
+    background-attachment: fixed;
+    animation: gradientShift 25s ease-in-out infinite alternate;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply backdrop-blur-xl bg-white/70 border border-white/20 shadow-xl;
+  }
+  
+  .glass-dark {
+    @apply backdrop-blur-xl bg-gray-900/70 border border-white/10 shadow-xl;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  }
+  
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-[0_0_30px_rgba(246,108,108,0.3)];
+  }
+  
+  .hover-lift {
+    @apply transition-transform duration-300 hover:-translate-y-1 hover:shadow-2xl;
+  }
+  /* Decorations: bubbles and glitters for subtle UI polish */
+  .decorations {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 40; /* above app content but below toasts which use higher z */
+    will-change: transform, opacity;
+  }
+
+  .decorations .bubble {
+    position: absolute;
+    border-radius: 9999px;
+    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), rgba(255,255,255,0.05));
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    opacity: 0.8;
+    animation-name: floatUp;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transform-origin: center;
+    will-change: transform, opacity;
+  }
+
+  .decorations .glitter {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0.2));
+    transform: rotate(20deg);
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.08));
+    animation-name: shimmer;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    will-change: transform, opacity;
+  }
+
+  @keyframes floatUp {
+    0% { transform: translateY(30vh) translateX(0) scale(0.85); opacity: 0 }
+    20% { opacity: 0.75 }
+    50% { transform: translateY(10vh) translateX(6vw) scale(1); opacity: 0.95 }
+    80% { opacity: 0.6 }
+    100% { transform: translateY(-20vh) translateX(-4vw) scale(1.05); opacity: 0 }
+  }
+
+  @keyframes shimmer {
+    0% { opacity: 0; transform: scale(0.6) translateX(-6px) rotate(10deg) }
+    40% { opacity: 1; transform: scale(1.2) translateX(0) rotate(20deg) }
+    100% { opacity: 0; transform: scale(0.6) translateX(6px) rotate(30deg) }
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Subtle gradient overlay for surfaces using theme tokens */
+  .card-gradient {
+    background-image: linear-gradient(
+      135deg,
+      hsl(var(--gradient-start) / 0.08),
+      hsl(var(--gradient-mid) / 0.06),
+      hsl(var(--gradient-end) / 0.08)
+    );
+    background-blend-mode: normal;
+  }
+}
+
